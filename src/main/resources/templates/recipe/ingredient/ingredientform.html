@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Ingredient</title>
+</head>
+<body>
+<form  th:object="${ingredient}" th:action="@{'/recipe/' + ${ingredient.getRecipeId()} + '/ingredient'}" method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <h1>Edit Ingredient Information</h1>
+
+    <div>
+        <label>Description:</label>
+        <input type="text"  th:field="*{description}"/>
+    </div>
+
+    <div>
+        <label>Amount:</label>
+        <input type="number"  th:field="*{amount}"/>
+    </div>
+
+    <div>
+        <label>UOM:</label>
+        <select  name="uom.id">
+            <option th:each="uomEach : ${uomList}"
+                    th:value="${uomEach.id}"
+                    th:selected="${uomEach.id.equals(ingredient.uom.id)}"
+                    th:text="${uomEach.description}">Each</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>

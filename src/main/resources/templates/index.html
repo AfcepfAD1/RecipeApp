@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Home</title>
+</head>
+<body>
+    <h1>My Recipes!</h1>
+
+    <!--Maj Internationalisation-->
+    <h2 th:text="#{app.welcome}">Welcome</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <!--maj (139)-->
+            <th>View</th>
+            <!--maj 144-->
+            <th>Update</th>
+            <!--Maj 145-->
+            <th>Delete</th>
+        </tr>
+        <tr th:each="recipe : ${recipes}">
+            <td th:text="${recipe.id}">123</td>
+            <td th:text="${recipe.description}">Tasty Goodnees</td>
+            <!--maj (139)-->
+            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show' }">View</a></td>
+            <!--maj 144-->
+            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/update'}">Update</a></td>
+            <!--Maj 145-->
+            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}">Delete</a></td>
+        </tr>
+    </table>
+    <a href="#" th:href="@{'/recipe/new'}">New Recipe</a></td>
+</body>
+</html>

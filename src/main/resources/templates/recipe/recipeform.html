@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Recipe</title>
+</head>
+<body>
+<!--/*@thymesVar id="recipe" type="fr.le7o.spring5recipeapp.domain.Recipe"*/-->
+<h1>Edit Recipe</h1>
+<form th:object="${recipe}" th:action="@{/recipe/}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <div>
+        <label>Recipe Description:</label>
+        <input type="text" th:field="*{description}">
+    </div>
+    <div>
+        <label>Servings:</label>
+        <input type="text" th:field="*{servings}">
+    </div>
+    <div>
+        <label>Prep Time:</label>
+        <input type="text" th:field="*{prepTime}">
+    </div>
+    <div>
+        <label>Cook Time:</label>
+        <input type="text" th:field="*{cookTime}">
+    </div>
+    <!--Maj 160-->
+    <div>
+        <label>Difficulty:</label>
+        <select th:field="*{difficulty}">
+            <option th:each="difficultyValue : ${T(fr.le7o.spring5recipeapp.domain.Difficulty).values()}"
+            th:value="${difficultyValue.name()}"
+            th:text="${difficultyValue.name()}">value</option>
+        </select>
+    </div>
+    <!--Maj 160-->
+    <div>
+        <label>URL:</label>
+        <input type="text" th:field="*{url}">
+    </div>
+    <div>
+        <label>Source:</label>
+        <input type="text" th:field="*{source}">
+    </div>
+
+    <div >
+        <label>Directions:</label>
+        <textarea  th:field="*{directions}" cols="60" rows="5"></textarea>
+    </div>
+
+    <div >
+        <label>Notes:</label>
+        <textarea th:field="*{notes.recipeNotes}" cols="60" rows="5" ></textarea>
+    </div>
+    <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>

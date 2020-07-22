@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Upload Form</title>
+</head>
+<body>
+    <h1>Upload a new recipe image</h1>
+    <form method="post" enctype="multipart/form-data"
+           th:action="@{'/recipe/' + ${recipe.getId()} + '/image'}">
+        <label >Select File</label>
+        <input  name="imagefile" type="file" >
+        <button type="submit" >Submit</button>
+    </form>
+</body>
+</html>
